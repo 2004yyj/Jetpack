@@ -169,8 +169,7 @@ DB 변화 관측은  ``AndroidSchedulers.mainThread()``를 사용한다.
 CompositeDisposable 객체를 사용하면, 생성된 모든 Observable 객체를 안드로이드 라이프사이클에 맞춰 소멸시킬 수 있다.
 
 
-
-- onCreate() 작성
+</br> - onCreate() 작성
 
 ```kotlin
 compositeDisposable.add(
