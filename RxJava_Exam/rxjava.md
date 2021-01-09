@@ -114,7 +114,7 @@ val db = Room.databaseBuilder(
 
 Room의 databaseBuilder에 applicationContext와 
 
-위에 생성한 AppDatabase 인스턴스를 가져와 "todo-db-kt-RxJava" 라는 로컬 파일에 DB를 저장합니다.
+위에 생성한 AppDatabase 인스턴스를 가져와 "todo-db-kt-RxJava" 라는 로컬 파일에 DB를 저장한다.
 
 
 
@@ -161,6 +161,7 @@ DB 변화 관측은  ``AndroidSchedulers.mainThread()``를 사용한다.
 구독자가 텍스트뷰를 참조하고 있어 비정상적으로 종료되었을 때, 
 
 **텍스트뷰는 가비지 컬렉션(GC)의 대상이 아니기 때문에 메모리 누수가 발생**하기 때문이다.
+
 
 
 
