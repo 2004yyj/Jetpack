@@ -32,11 +32,9 @@ Push-Pull 전략으로도 설명할 수 있는데,
 
 
 
-2. **연산자(Operators)** : 발행된 데이터를 생성, 변환, 필터링 등등 처리하는 연산자들이 있다. 연산자들은 [이 곳](http://reactivex.io/documentation/ko/operators.html)에서 확인해볼 수 있다.
+</br>2. **연산자(Operators)** : 발행된 데이터를 생성, 변환, 필터링 등등 처리하는 연산자들이 있다. 연산자들은 [이 곳](http://reactivex.io/documentation/ko/operators.html)에서 확인해볼 수 있다.
 
-
-
-3. **스케쥴러(Scheduler)** : 발행된 데이터를 연산하는 스레드, 연산 이후 최종적으로 구독하는 스레드를 지정하는 것이다.
+</br>3. **스케쥴러(Scheduler)** : 발행된 데이터를 연산하는 스레드, 연산 이후 최종적으로 구독하는 스레드를 지정하는 것이다.
 
 |     스케쥴러(자바 기준)     |                             용도                             |
 | :-------------------------: | :----------------------------------------------------------: |
@@ -52,10 +50,9 @@ Push-Pull 전략으로도 설명할 수 있는데,
 ### Room과 RxJava를 함께 사용해보자
 
 1. **시작하기 앞서**
+</br>EditText 입력 후 추가 버튼을 누르면 TextView에 [{title = 1}, {title = 2}] 와 같이 TextView에 출력되도록 할 것이다.
 
-EditText 입력 후 추가 버튼을 누르면 TextView에 [{title = 1}, {title = 2}] 와 같이 TextView에 출력되도록 할 것이다.
-
-2. **Todo 데이터 클래스 작성**
+</br>2. **Todo 데이터 클래스 작성**
 
 ```kotlin
 @Entity
@@ -69,7 +66,7 @@ data class Todo(
 
 
 
-3. **TodoDao Interface 작성**
+</br>3. **TodoDao Interface 작성**
 
 ```kotlin
 @Dao
@@ -90,7 +87,7 @@ interface TodoDao {
 
 
 
-4. **DB 추상 클래스 작성**
+</br>4. **DB 추상 클래스 작성**
 
 ```kotlin
 @Database(entities = [Todo::class], version = 1, exportSchema = false)
@@ -102,7 +99,7 @@ abstract class AppDatabase : RoomDatabase() {
 
 
 
-5. **MainActivity 클래스 작성 - Room 데이터베이스 생성**
+</br>5. **MainActivity 클래스 작성 - Room 데이터베이스 생성**
 
 ```kotlin
 val db = Room.databaseBuilder(
@@ -113,12 +110,10 @@ val db = Room.databaseBuilder(
 ```
 
 Room의 databaseBuilder에 applicationContext와 
-
+</br>
 위에 생성한 AppDatabase 인스턴스를 가져와 "todo-db-kt-RxJava" 라는 로컬 파일에 DB를 저장한다.
 
-
-
-6. **MainActivity 클래스 작성 - 버튼**
+</br>6. **MainActivity 클래스 작성 - 버튼**
 
 ```kotlin
 button.setOnClickListener {
@@ -137,7 +132,7 @@ button.setOnClickListener {
 
 
 
-7. **MainActivity 클래스 작성 - 텍스트 뷰에 데이터베이스 값 출력**
+</br>7. **MainActivity 클래스 작성 - 텍스트 뷰에 데이터베이스 값 출력**
 
 ```kotlin
 db.todoDao().getAll()
@@ -165,7 +160,7 @@ DB 변화 관측은  ``AndroidSchedulers.mainThread()``를 사용한다.
 
 
 
-8. **MainActivity 클래스 작성 - 메모리 누수 방지**
+</br>8. **MainActivity 클래스 작성 - 메모리 누수 방지**
 
 ```kotlin
     private val compositeDisposable = CompositeDisposable()
@@ -197,7 +192,7 @@ CompositeDisposable 클래스의 메소드 중 ``add()``, ``addAll()``을 생성
 
 
 
-- onDestroy() 작성
+</br> - onDestroy() 작성
 
 ```kotlin
 override fun onDestroy() {
