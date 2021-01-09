@@ -17,23 +17,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val editText = findViewById<EditText>(R.id.todo_edit)
+        val textView = findViewById<TextView>(R.id.result_text)
+        val button = findViewById<Button>(R.id.add_button)
+
         val db = Room.databaseBuilder(
                 applicationContext,
                 AppDatabase::class.java,
                 "todo-db-kt-RxJava"
         ).build()
 
-        val editText = findViewById<EditText>(R.id.todo_edit)
-        val textView = findViewById<TextView>(R.id.result_text)
-        val button = findViewById<Button>(R.id.add_button)
-
-
         compositeDisposable.add(
         db.todoDao().getAll()
                 .subscribeOn(io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { item ->
-                    textView.text = item.toString()
+                .subscribe { todo ->
+                    textView.text = todo.toString()
                 }
         )
 
