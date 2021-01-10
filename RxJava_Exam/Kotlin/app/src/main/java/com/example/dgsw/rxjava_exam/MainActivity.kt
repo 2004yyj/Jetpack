@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.schedulers.Schedulers.io
 
 class MainActivity : AppCompatActivity() {
-    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,25 +27,17 @@ class MainActivity : AppCompatActivity() {
                 "todo-db-kt-RxJava"
         ).build()
 
-        compositeDisposable.add(
         db.todoDao().getAll()
-                .subscribeOn(io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { todo ->
+                .observe (this, { todo ->
                     textView.text = todo.toString()
                 }
-        )
+        ) // LiveData 사용
 
         button.setOnClickListener {
             db.todoDao().insert(Todo(editText.text.toString()))
-                    .subscribeOn(io())
+                    .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe()
+                    .subscribe() //
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        compositeDisposable.clear()
     }
 }

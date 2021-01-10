@@ -9,7 +9,7 @@ import io.reactivex.Observable
 @Dao
 interface TodoDao {
     @Query("SELECT * FROM Todo")
-    fun getAll(): Observable<List<Todo>>
+    fun getAll(): LiveData<List<Todo>>
 
     @Insert
     fun insert(todo : Todo) : Completable
