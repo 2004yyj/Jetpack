@@ -1,15 +1,15 @@
 package com.example.dgsw.maskinfo.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Store (
     val addr : String,
     val code : String,
-    val createdAt : String,
+    val created_at : String,
     val lat : Double,
     val lng : Double,
     val name : String,
-    val remainStat : String,
-    val stockAt : String,
+    val remain_stat : String?,
+    val stock_at : String?,
     val type : String,
 )
