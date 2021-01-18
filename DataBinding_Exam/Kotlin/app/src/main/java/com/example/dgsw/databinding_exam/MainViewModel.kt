@@ -22,7 +22,7 @@ class MainViewModel(application : Application) : AndroidViewModel(application) {
         todos = getAll()
     }
 
-    fun getAll() : LiveData<List<Todo>> {
+    private fun getAll() : LiveData<List<Todo>> {
         return db.todoDao().getAll()
     }
 

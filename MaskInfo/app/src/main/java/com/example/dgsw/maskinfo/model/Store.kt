@@ -1,7 +1,5 @@
 package com.example.dgsw.maskinfo.model
 
-import com.google.gson.annotations.SerializedName
-
 data class Store (
     val addr : String,
     val code : String,
