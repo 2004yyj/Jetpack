@@ -5,6 +5,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.room.Room
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -27,8 +28,7 @@ class MainActivity : AppCompatActivity() {
                 "todo-db-kt-RxJava"
         ).build()
 
-        db.todoDao().getAll()
-                .observe (this, { todo ->
+        db.todoDao().getAll().observe (this, Observer { todo ->
                     textView.text = todo.toString()
                 }
         ) // LiveData 사용
